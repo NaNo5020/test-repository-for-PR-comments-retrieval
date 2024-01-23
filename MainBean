@@ -1,0 +1,16 @@
+public static void main(String[] args) throws Exception {
+
+		String propertiesPath = "resources/properties.properties";
+		Properties properties = new Properties();
+		try (InputStream input = Thread.currentThread().getContextClassLoader().getResourceAsStream(propertiesPath)) {
+			if (input == null) {
+				throw new RuntimeException("The Properties file is missing");
+			}
+
+			properties.load(input);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Error loading the Properties file", e);
+		}
+}
